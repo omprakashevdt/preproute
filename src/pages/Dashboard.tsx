@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Loader from "../components/common/Loader";
+import ErrorDisplay from "../components/common/ErrorDisplay";
 
 const Dashboard: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -28,6 +29,10 @@ const Dashboard: React.FC = () => {
 
   const handleCreateTest = () => {
     navigate("/create-test");
+  };
+
+  const handleRetry = () => {
+    dispatch(fetchSubjects());
   };
 
   const formatDate = (dateString: string) => {
@@ -43,12 +48,7 @@ const Dashboard: React.FC = () => {
   };
 
   if (loading) return <Loader />;
-  if (error)
-    return (
-      <Typography color="error" align="center" sx={{ mt: 4 }}>
-        {error}
-      </Typography>
-    );
+  if (error) return <ErrorDisplay error={error} onRetry={handleRetry} />;
 
   return (
     <Box>
