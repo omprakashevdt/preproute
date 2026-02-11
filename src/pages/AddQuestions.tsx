@@ -111,7 +111,6 @@ const AddQuestions = () => {
 
   useEffect(() => {
     if (currentTest?.subject) {
-
       const subjectObj = subjects.find(
         (s) => s.name === currentTest.subject || s.id === currentTest.subject,
       );
@@ -119,7 +118,6 @@ const AddQuestions = () => {
       if (subjectObj) {
         dispatch(fetchTopics(subjectObj.id));
       } else {
-
         dispatch(fetchSubjects());
       }
     }
@@ -132,7 +130,6 @@ const AddQuestions = () => {
   }, [selectedTopicId, dispatch]);
 
   const handleAddQuestion = (data: QuestionFormValues) => {
-
     const newQuestion = {
       question: data.question,
       option1: data.option1,
@@ -396,7 +393,7 @@ const AddQuestions = () => {
               </Typography>
             </Box>
             <List sx={{ maxHeight: "calc(100vh - 300px)", overflow: "auto" }}>
-              {questions.map((q, index) => (
+              {questions.map((_, index) => (
                 <ListItem
                   key={index}
                   disablePadding
